@@ -1,21 +1,24 @@
 {
   "name": "Sounds of nature",
-  "version": "1.0",
+  "version": "0.1",
   "background": {
     "scripts": ["bg.js"]
   },
-  "options_page": "options.html",
-  "icons": { "128": "icon.png" },
+  "minimum_chrome_version": "16.0.884",
   "permissions": [
-    "tabs",
-    "bookmarks",
-    "http://*/*",
-    "https://*/*"
+      "<all_urls>",
+      "background",
+      "tabs",
+      "bookmarks",
+      "http://*/*",
+      "https://*/*"
   ],
   "content_scripts": [ {
     "matches": ["http://*/*", "https://*/*"],
-    "js": ["content.js"],
+    "js": ["popup.js"],
     "all_frames": true
   }],
+  "browser_action": {"default_popup": "popup.html"},
   "manifest_version": 2
 }
+
