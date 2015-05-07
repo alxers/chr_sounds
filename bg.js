@@ -1,18 +1,14 @@
-var audioEl = document.createElement('audio');
+function injectedMethod (tab, method, callback) {
+    chrome.tabs.executeScript(tab.id, { file: 'popup.js' }, function(){
+        chrome.tabs.sendMessage(tab.id, { method: method }, callback);
+    });
+}
 
-audioEl.setAttribute('preload', 'auto');
-audioEl.autobuffer = true;
+function play (tab) {
+    injectedMethod(tab, 'play', function (response) {
+        return true;
+    });
+}
 
-var source = document.createElement('source');
-source.type = 'audio/mpeg';
-source.src = '/';
-audioEl.appendChild(source);
+chrome.browserAction.onClicked.addListener(play);
 
-chrome.extension.onMessage.addListener(
-        function (req, sender, res) {
-            if (req.action == 'play') {
-                audioEl.load;
-                audioEl.play();
-            }
-        }
-);
