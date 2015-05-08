@@ -1,14 +1,9 @@
-function injectedMethod (tab, method, callback) {
-    chrome.tabs.executeScript(tab.id, { file: 'popup.js' }, function(){
-        chrome.tabs.sendMessage(tab.id, { method: method }, callback);
-    });
-}
-
-function play (tab) {
-    injectedMethod(tab, 'play', function (response) {
-        return true;
-    });
-}
-
-chrome.browserAction.onClicked.addListener(play);
-
+chrome.runtime.onMessage.addListener(
+    function (req, sender, res) {
+        console.dir(arguments);
+        if (req.action == 'play') {
+            var rain = new Audio('rain.wav');
+            rain.play();
+        }
+    }
+);
