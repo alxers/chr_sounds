@@ -1,11 +1,23 @@
+function createAudio (fileName) {
+    return new Audio(fileName);
+}
+
+function playOrPause (audio) {
+    if (audio.paused) {
+        audio.play();
+    } else {
+        audio.pause();
+    }
+}
+
+var rain = createAudio('rain.wav');
+
 chrome.runtime.onMessage.addListener(
     function (req, sender, res) {
-        console.dir(arguments);
-        var rain = new Audio('rain.wav');
         if (req.action == 'play') {
-            rain.play();
-        } else if (req.action == 'pause') {
-            rain.pause();
+            playOrPause(rain);
         }
     }
 );
+
+
