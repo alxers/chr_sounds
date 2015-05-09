@@ -1,9 +1,11 @@
 chrome.runtime.onMessage.addListener(
     function (req, sender, res) {
         console.dir(arguments);
+        var rain = new Audio('rain.wav');
         if (req.action == 'play') {
-            var rain = new Audio('rain.wav');
             rain.play();
+        } else if (req.action == 'pause') {
+            rain.pause();
         }
     }
 );

@@ -1,5 +1,10 @@
-var btn = document.getElementById('play');
+var btnPlay = document.getElementById('play');
+var btnPause = document.getElementById('pause');
 
-btn.addEventListener('click', function() {
+btnPlay.addEventListener('click', function() {
     chrome.runtime.sendMessage({ action: 'play' });
+});
+
+btnPause.addEventListener('click', function() {
+    chrome.runtime.sendMessage({ action: 'pause' });
 });
