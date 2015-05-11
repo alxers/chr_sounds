@@ -1,5 +1,5 @@
-var btnPlay = document.getElementById('play');
+var btnPlay = document.getElementById('rain');
 
 btnPlay.addEventListener('click', function() {
-    chrome.runtime.sendMessage({ action: 'play' });
+    chrome.runtime.sendMessage({ action: 'rain' });
 });

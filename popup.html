@@ -1,9 +1,43 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <style>
+      html {
+        box-sizing: border-box;
+      }
+
+      *, *:before, *:after {
+        box-sizing: inherit;
+      }
+
+      section {
+        overflow: hidden;
+        width: 10em;
+      }
+
+      .element {
+        border: 1px solid #000000;
+        float: left;
+        height: 5em;
+        width: 5em;
+      }
+    </style>
   </head>
   <body>
-    <div id="play">Play</div>
+    <section>
+      <div id="rain" class="element">
+        Rain
+      </div>
+      <div id="fire" class="element">
+        Fire
+      </div>
+      <div id="waves" class="element">
+        Water
+      </div>
+      <div id="wind" class="element">
+        Wind
+      </div>
+    </section>
     <script src="popup.js"></script>
   </body>
 </html>

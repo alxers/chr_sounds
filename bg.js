@@ -1,3 +1,5 @@
+var RAIN = createAudio('rain.wav');
+
 function createAudio (fileName) {
     return new Audio(fileName);
 }
@@ -10,12 +12,10 @@ function playOrPause (audio) {
     }
 }
 
-var rain = createAudio('rain.wav');
-
 chrome.runtime.onMessage.addListener(
     function (req, sender, res) {
-        if (req.action == 'play') {
-            playOrPause(rain);
+        if (req.action == 'rain') {
+            playOrPause(RAIN);
         }
     }
 );
