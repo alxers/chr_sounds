@@ -1,18 +1,13 @@
-function createBtn () {
-    var elements = [
-        'rain',
-        'waves',
-        'fire',
-        'forest'
-    ]
-    for (var i = 0, elLength = elements.length; i < elLength; i += 1) {
-        (function (i) {
-            var btn = document.getElementById(elements[i]);
-            btn.addEventListener('click', function () {
-                chrome.runtime.sendMessage({ action: elements[i] })
-            });
-        })(i)
-    }
-}
+;(function () {
 
-createBtn()
+    var btns = document.getElementById('btns');
+
+    btns.addEventListener('click', function (e) {
+        var message = e.target.dataset.message;
+        if (message) {
+            chrome.runtime.sendMessage({ action: message })
+        }
+    })
+
+})()
+
