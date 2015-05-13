@@ -2,6 +2,8 @@
 
     var RAIN = createAudio('rain.wav');
     var WAVES= createAudio('waves.wav');
+    var FIRE= createAudio('fire.wav');
+    var FOREST = createAudio('forest.wav');
 
     function createAudio (fileName) {
         return new Audio(fileName);
@@ -23,6 +25,14 @@
 
             if (req.action == 'waves') {
                 playOrPause(WAVES);
+            }
+
+            if (req.action == 'fire') {
+                playOrPause(FIRE);
+            }
+
+            if (req.action == 'forest') {
+                playOrPause(FOREST);
             }
         }
     );
