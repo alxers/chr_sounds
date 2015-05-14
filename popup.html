@@ -11,31 +11,41 @@
       }
 
       section {
+        cursor: pointer;
         overflow: hidden;
-        width: 10em;
+        width: 12em;
       }
 
       .element {
-        border: 1px solid #000000;
         float: left;
-        height: 5em;
-        width: 5em;
+        position: relative;
+        height: 6em;
+        width: 6em;
+      }
+
+      .element img {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%)
       }
     </style>
   </head>
   <body>
     <section id="btns">
-      <div class="element" data-message="rain">
-        Rain
+      <div class="element">
+        <img src="images/rain.png" data-message="rain">
       </div>
-      <div class="element" data-message="fire">
-        Fire
+      <div class="element">
+        <img src="images/fire.png" data-message="fire">
       </div>
-      <div class="element" data-message="waves">
-        Waves
+      <div class="element">
+        <img src="images/waves.png" data-message="waves">
       </div>
-      <div class="element" data-message="forest">
-        Forest
+      <div class="element">
+        <img src="images/forest.png" data-message="forest">
       </div>
     </section>
     <script src="popup.js"></script>
