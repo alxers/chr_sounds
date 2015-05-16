@@ -9,8 +9,13 @@
         return new Audio(fileName);
     }
 
+    function enableLoop (audio) {
+        audio.loop = true;
+    }
+
     function playOrPause (audio) {
         if (audio.paused) {
+            enableLoop(audio);
             audio.play();
         } else {
             audio.pause();
