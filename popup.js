@@ -20,7 +20,9 @@
 
         if (message) {
             chrome.runtime.sendMessage({ action: message });
-            toggleHighlight(el);
+            //toggleHighlight(el);
+            // get element from background
+            chrome.extension.getBackgroundPage().getIconEl(el);
         }
     })
 
