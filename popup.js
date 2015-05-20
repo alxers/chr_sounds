@@ -20,11 +20,15 @@
 
         if (message) {
             chrome.runtime.sendMessage({ action: message });
-            //toggleHighlight(el);
+            toggleHighlight(el);
             // get element from background
-            chrome.extension.getBackgroundPage().getIconEl(el);
+            chrome.extension.getBackgroundPage().clickedEl = el;
         }
-    })
+    });
 
+    window.addEventListener('load', function (e) {
+        // iconEl = popupDoc.querySelector('[data-message=' + msg + ']');
+        clickedEl = chrome.extension.getBackgroundPage().clickedEl;
+    });
+    
 })()
-
