@@ -27,8 +27,12 @@
     });
 
     window.addEventListener('load', function (e) {
-        // iconEl = popupDoc.querySelector('[data-message=' + msg + ']');
-        clickedEl = chrome.extension.getBackgroundPage().clickedEl;
+        var clickedEl = chrome.extension.getBackgroundPage().clickedEl;
+        if (clickedEl) {
+            var iconEl = document.querySelector('[data-message=' + clickedEl.dataset.message + ']');
+            var parentEl = iconEl.parentElement;
+            parentEl.replaceChild(document.importNode(clickedEl,true), iconEl);
+        }
     });
     
 })()
