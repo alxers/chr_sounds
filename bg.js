@@ -1,50 +1,48 @@
-;(function () {
+var RAIN = createAudio('rain.wav');
+var WAVES= createAudio('waves.wav');
+var FIRE= createAudio('fire.wav');
+var FOREST = createAudio('forest.wav');
 
-    var RAIN = createAudio('rain.wav');
-    var WAVES= createAudio('waves.wav');
-    var FIRE= createAudio('fire.wav');
-    var FOREST = createAudio('forest.wav');
+var clickedEls = {};
 
-    function createAudio (fileName) {
-        return new Audio(fileName);
+function createAudio (fileName) {
+    return new Audio(fileName);
+}
+
+function enableLoop (audio) {
+    audio.loop = true;
+}
+
+function playOrPause (audio) {
+    if (audio.paused) {
+        enableLoop(audio);
+        audio.play();
+    } else {
+        audio.pause();
+    }
+}
+
+function playSounds (msg) {
+    if (msg === 'rain') {
+        playOrPause(RAIN);
     }
 
-    function enableLoop (audio) {
-        audio.loop = true;
+    if (msg === 'waves') {
+        playOrPause(WAVES);
     }
 
-    function playOrPause (audio) {
-        if (audio.paused) {
-            enableLoop(audio);
-            audio.play();
-        } else {
-            audio.pause();
-        }
+    if (msg === 'fire') {
+        playOrPause(FIRE);
     }
 
-    function playSounds (msg) {
-        if (msg === 'rain') {
-            playOrPause(RAIN);
-        }
+    if (msg === 'forest') {
+        playOrPause(FOREST);
+    } 
+}
 
-        if (msg === 'waves') {
-            playOrPause(WAVES);
-        }
-
-        if (msg === 'fire') {
-            playOrPause(FIRE);
-        }
-
-        if (msg === 'forest') {
-            playOrPause(FOREST);
-        } 
+chrome.runtime.onMessage.addListener(
+    function (req, sender, res) {
+        var msg = req.action;
+        playSounds(msg);
     }
-
-    chrome.runtime.onMessage.addListener(
-        function (req, sender, res) {
-            var msg = req.action;
-            playSounds(msg);
-        }
-    );
-    
-})()
+);

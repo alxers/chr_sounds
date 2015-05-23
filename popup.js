@@ -22,16 +22,19 @@
             chrome.runtime.sendMessage({ action: message });
             toggleHighlight(el);
             // get element from background
-            chrome.extension.getBackgroundPage().clickedEl = el;
+            chrome.extension.getBackgroundPage().clickedEls[message] = el;
         }
     });
 
     window.addEventListener('load', function (e) {
-        var clickedEl = chrome.extension.getBackgroundPage().clickedEl;
-        if (clickedEl) {
-            var iconEl = document.querySelector('[data-message=' + clickedEl.dataset.message + ']');
-            var parentEl = iconEl.parentElement;
-            parentEl.replaceChild(document.importNode(clickedEl,true), iconEl);
+        var clickedEls = chrome.extension.getBackgroundPage().clickedEls;
+
+        // replace existing elements to ones from background
+        for (var key in clickedEls) {
+            if (clickedEls.hasOwnProperty(key)) {
+                var iconEl = document.querySelector('[data-message=' + key + ']');
+                iconEl.parentElement.replaceChild(clickedEls[key], iconEl);
+            }
         }
     });
     
