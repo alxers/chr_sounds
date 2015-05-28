@@ -3,7 +3,7 @@ var WAVES= createAudio('waves.wav');
 var FIRE= createAudio('fire.wav');
 var FOREST = createAudio('forest.wav');
 
-var clickedEls = {};
+var clickedEls = clickedEls || {};
 
 function createAudio (fileName) {
     return new Audio(fileName);
